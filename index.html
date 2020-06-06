@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /*@import url("https://fonts.googleapis.com/css?family=Lato");*/
+
+        * {
+            padding: 0;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            text-align: left;
+            font-family: Lato;
+            color: #fff;
+            background-color: #d1d9e4;
+        }
+
+
+        .tabs {
+            width: 90%;
+            float: none;
+            list-style: none;
+            position: relative;
+            margin: 80px 0 0 10px;
+            /*text-align: left;*/
+        }
+
+            .tabs li {
+                float: left;
+                display: block;
+                width: 25%;
+            }
+
+            .tabs input[type="radio"] {
+                position: absolute;
+                top: 0;
+                left: -9999px;
+            }
+
+            .tabs label {
+                display: block;
+                padding: 14px 21px;
+                border-radius: 2px 2px 0 0;
+                font-size: 20px;
+                font-weight: normal;
+                /*text-transform: uppercase;*/
+                background-color: #231c52;
+                cursor: pointer;
+                position: relative;
+                top: 4px;
+                -moz-transition: all 0.2s ease-in-out;
+                -o-transition: all 0.2s ease-in-out;
+                -webkit-transition: all 0.2s ease-in-out;
+                transition: all 0.2s ease-in-out;
+            }
+
+                .tabs label:hover {
+                    background-color: darkblue;
+                }
+
+            .tabs .tab-content {
+                z-index: 2;
+                display: none;
+                overflow: hidden;
+                width: 100%;
+                font-size: 17px;
+                line-height: 25px;
+                padding-bottom: 0;
+                position: absolute;
+                top: 53px;
+                left: 0;
+                
+            }
+
+            .tabs [id^="tab"]:checked + label {
+                top: 0;
+                padding-top: 17px;
+                background: #1a0a82;
+            }
+
+            .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+                display: block;
+            }
+
+        p.link {
+            clear: both;
+            margin: 380px 0 0 15px;
+        }
+
+            p.link a {
+                text-transform: uppercase;
+                text-decoration: none;
+                display: inline-block;
+                color: #fff;
+                padding: 5px 10px;
+                margin: 0 5px;
+                background-color: #612e76;
+                -moz-transition: all 0.2s ease-in;
+                -o-transition: all 0.2s ease-in;
+                -webkit-transition: all 0.2s ease-in;
+                transition: all 0.2s ease-in;
+            }
+
+                p.link a:hover {
+                    background-color: #231c52;
+                }
+        a {
+            color: #1a0a82;
+        }
+
+        .title_content {
+            text-align: center;
+        }
+
+        #myBtn {
+            width: 100%;
+            background-color: black;
+            color: white;
+            border-color: #f0f8ff00;
+            padding-bottom: 0;
+        }
+        /*p{
+            padding:2%;
+        }*/
+        .table_content {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        .T1 {
+            text-align: left;
+            width: 15%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            padding-left: 1%;
+        }
+
+        .T2 {
+            text-align: right;
+            width: 85%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            padding-right: 1%;
+        }
+
+        .color1 {
+            background-color: #929294;
+            color:black;
+        }
+
+        .color2 {
+            background-color: #aeaeb1;
+            color: black;
+        }
+
+        .color3 {
+            background-color: #cfcfd2;
+            color: black;
+        }
+
+        td {
+            border-style: inset;
+        }
+
+        #textarea {
+            /* hide by default: */
+            display: none;
+        }
+
+        /* when the checkbox is checked, show the neighbouring #textarea element: */
+        #textAreaToggle:checked + #textarea {
+            display: inline-table;
+        }
+
+        /* position the checkbox off-screen: */
+        /*input[type="checkbox"] {
+            position: absolute;
+            left: -9999px
+        }*/
+
+        #textAreaToggle {
+            position: absolute;
+            left: -9999px;
+        }
+        /* Aesthetics only, adjust to taste: */
+        label {
+            display: block;
+        }
+
+        /* when the checkbox is unchecked (its default state) show the text
+   'Show ' in the label element: */
+        #textAreaToggle + #textarea + label::before {
+            content: 'Read More ';
+        }
+
+        /* when the checkbox is checked 'Hide ' in the label element; the
+   general-sibling combinator '~' is required for a bug in Chrome: */
+        #textAreaToggle:checked ~ #textarea + label::before {
+            content: 'Read Less ';
+        }
+
+        /*......................................................*/
+
+        #textarea2 {
+            /* hide by default: */
+            display: none;
+        }
+
+        /* when the checkbox is checked, show the neighbouring #textarea element: */
+        #textAreaToggle2:checked + #textarea2 {
+            display: inline-table;
+        }
+
+        #textAreaToggle2 {
+            position: absolute;
+            left: -9999px;
+        }
+        /* when the checkbox is unchecked (its default state) show the text
+   'Show ' in the label element: */
+        #textAreaToggle2 + #textarea2 + label::before {
+            content: 'Read More ';
+        }
+
+        /* when the checkbox is checked 'Hide ' in the label element; the
+   general-sibling combinator '~' is required for a bug in Chrome: */
+        #textAreaToggle2:checked ~ #textarea2 + label::before {
+            content: 'Read Less ';
+        }
+        /*........................................................*/
+        #textarea3 {
+            /* hide by default: */
+            display: none;
+        }
+        /* when the checkbox is checked, show the neighbouring #textarea element: */
+        #textAreaToggle3:checked + #textarea3 {
+            display: inline-table;
+        }
+
+        #textAreaToggle3 {
+            position: absolute;
+            left: -9999px;
+        }
+            /* when the checkbox is unchecked (its default state) show the text
+   'Show ' in the label element: */
+            #textAreaToggle3 + #textarea3 + label::before {
+                content: 'Read More ';
+            }
+
+            /* when the checkbox is checked 'Hide ' in the label element; the
+   general-sibling combinator '~' is required for a bug in Chrome: */
+            #textAreaToggle3:checked ~ #textarea3 + label::before {
+                content: 'Read Less ';
+            }
+        /*........................................................*/
+        #textarea4 {
+            /* hide by default: */
+            display: none;
+        }
+
+        /* when the checkbox is checked, show the neighbouring #textarea element: */
+        #textAreaToggle4:checked + #textarea4 {
+            display: inline-table;
+        }
+
+        #textAreaToggle4 {
+            position: absolute;
+            left: -9999px;
+        }
+            /* when the checkbox is unchecked (its default state) show the text
+   'Show ' in the label element: */
+            #textAreaToggle4 + #textarea4 + label::before {
+                content: 'Read More ';
+            }
+
+            /* when the checkbox is checked 'Hide ' in the label element; the
+   general-sibling combinator '~' is required for a bug in Chrome: */
+            #textAreaToggle4:checked ~ #textarea4 + label::before {
+                content: 'Read Less ';
+            }
+        /*........................................................*/
+
+
+        #MoreLess {
+            background-color: black;
+        }
+
+        .dropbtn {
+            background-color: black;
+            color: white;
+            padding: 16px;
+            margin-right: 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            text-align: left;
+            padding-left: 3%;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+
+            .dropdown-content a {
+                color: #1a0a82;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: contents;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: black;
+        }
+
+        p,
+        label {
+            font: 1rem 'Fira Sans', sans-serif;
+            background-color:aliceblue;
+        }
+
+        input {
+            margin: .4rem;
+            background:none;
+        }
+        .tabs input[type="radio"] {
+            position: absolute;
+            top: 0;
+            left: -9999px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <center>
+
+        <div style="width:100%">
+            <ul class="tabs" role="tablist">
+                <li>
+                    <input type="radio" name="tabs" id="tab1" checked="">
+                    <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0" class="title_content">Gold</label>
+                    <div id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description" aria-hidden="false">
+
+
+                        <table class="table_content">
+                            <tr class="color3">
+                                <td class="T1">
+                                    <a href="#">Provider Network List</a>
+                                </td>
+                                <td class="T2">
+
+                                    <div class="dropdown" style="float:right;">
+                                        <button class="dropbtn">Compare Schemes</button>
+                                        <div class="dropdown-content" >
+                                            <p>Select up to 2 more schemes to compare:</p>
+
+                                            <div><input type="checkbox" name="color" value="Silver"> Silver</div>
+                                            <div><input type="checkbox" name="color" value="Bronze"> Bronze</div>
+                                            <div style="padding-bottom:3%" ><input type="checkbox" name="color" value="Blue"> Blue</div>
+
+                                                <a href="#">Compare</a>
+                                            </div>
+                                        
+                                    </div>
+                                </td>
+                </tr>
+
+                <tr class="color1">
+                    <td class="T1">Overall annual<br /> maximum limit per<br /> member</td>
+                    <td class="T2">Starts from SAR 500,000</td>
+                </tr>
+                <tr class="color2">
+                    <td class="T1">Accommodation</td>
+                    <td class="T2">Single room to Standard suite</td>
+                </tr>
+                <tr class="color3">
+                    <td class="T1">Outpatient deductible</td>
+                    <td class="T2">
+                        "0-20% deductible rate up to SR 75 at the minimum providers network (MPN) 0-20% deductible rate up to SR 100 at polyclinics in<br />
+                        -network not within (MPN) 0-20% deductible rate up to SR 300 at hospitals in-network not within (MPN)"
+                    </td>
+                </tr>
+
+                <tr class="color1">
+                    <td class="T1">Emergency treatment<br /> outside the kingdom</td>
+                    <td class="T2">
+                        Covered 100% of the actual cost on the first 50,000 Saudi Riyal. Any cost over this amount is paid based on the reasonable and<br />
+                        customary cost of the same medical service in a network provider in KSA
+                    </td>
+                </tr>
+                <tr class="color2">
+                    <td class="T1">Maternity Cover with<br /> benefits</td>
+                    <td class="T2">
+                        Starting from SAR 15,000<br />
+                        (normal deliveries , antenatal and postnatal cares)
+                    </td>
+                </tr>
+                <tr class="color3">
+                    <td class="T1">Dental coverage</td>
+                    <td class="T2">Starting from 2,000 SAR that includes a dental scaling once a year</td>
+                </tr>
+
+
+                <tr class="color1">
+                    <td class="T1">Optical coverage</td>
+                    <td class="T2">Starting from SAR 400</td>
+                </tr>
+                <tr class="color2">
+                    <td class="T1">Inpatient / day-case<br /> coverage</td>
+                    <td class="T2">Covered</td>
+                </tr>
+                <tr class="color3">
+                    <td class="T1">Companion charges</td>
+                    <td class="T2">Fully paid</td>
+                </tr>
+
+
+                </table>
+
+
+
+                <input id="textAreaToggle" type="checkbox" />
+
+                <table class="table_content" id="textarea">
+                    <tr class="color1">
+                        <td class="T1">Outpatient coverage</td>
+                        <td class="T2">Covered</td>
+                    </tr>
+                    <tr class="color2">
+                        <td class="T1">Maternity complications (Caesarean deliveries, legal<br /> abortion, miscarriage, haemorrhages)</td>
+                        <td class="T2">
+                            Up to annual maximum limit<br />
+                            (Caesarean deliveries, legal abortion, miscarriage, haemorrhages…)
+                        </td>
+                    </tr>
+                    <tr class="color3">
+                        <td class="T1">Treatment of premature babies</td>
+                        <td class="T2">Up to annual maximum limit</td>
+                    </tr>
+                </table>
+
+                <label for="textAreaToggle" id="MoreLess"> > </label>
+</div>
+
+                </li>
+                <li>
+                    <input type="radio" name="tabs" id="tab2">
+                    <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0" class="title_content">Silver</label>
+                    <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+                        <table class="table_content">
+                            <tr class="color3">
+                                <td class="T1">
+                                    <a href="#">Provider Network List</a>
+                                </td>
+                                <td class="T2">
+
+                                    <div class="dropdown" style="float:right;">
+                                        <button class="dropbtn">Compare Schemes</button>
+                                        <div class="dropdown-content">
+                                            <p>Select up to 2 more schemes to compare:</p>
+
+                                            <div><input type="checkbox" name="color" value="Silver"> Gold</div>
+                                            <div><input type="checkbox" name="color" value="Bronze"> Bronze</div>
+                                            <div style="padding-bottom:3%"><input type="checkbox" name="color" value="Blue"> Blue</div>
+
+                                            <a href="#">Compare</a>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="color1">
+                                <td class="T1">Overall annual maximum<br /> limit per member</td>
+                                <td class="T2">Starts from SAR 500,000</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Accommodation</td>
+                                <td class="T2">Single room</td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Outpatient deductible</td>
+                                <td class="T2">
+                                    20% of net amount up to SAR 100 per incident
+                                </td>
+                            </tr>
+
+                            <tr class="color1">
+                                <td class="T1">Emergency treatment<br /> outside the kingdom</td>
+                                <td class="T2">
+                                    Covered 100% of the actual cost on the first 50,000 Saudi Riyal. Any cost over this amount is paid based on the reasonable and<br />
+                                    customary cost of the same medical service in a network provider in KSA
+                                </td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Maternity Cover with<br /> benefits</td>
+                                <td class="T2">
+                                    Starting from SAR 15,000<br />
+                                    (normal deliveries , antenatal and postnatal cares)
+                                </td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Dental coverage</td>
+                                <td class="T2">Starting from 2,000 SAR that includes a dental scaling once a year</td>
+                            </tr>
+
+
+                            <tr class="color1">
+                                <td class="T1">Optical coverage</td>
+                                <td class="T2">Starting from SAR 400</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Inpatient / day-case<br /> coverage</td>
+                                <td class="T2">Covered</td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Companion charges</td>
+                                <td class="T2">Fully paid</td>
+                            </tr>
+
+
+                        </table>
+
+
+
+                        <input id="textAreaToggle2" type="checkbox" />
+
+                        <table class="table_content" id="textarea2">
+                            <tr class="color1">
+                                <td class="T1">Outpatient coverage</td>
+                                <td class="T2">Covered</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Maternity complications (Caesarean deliveries, legal<br /> abortion, miscarriage, haemorrhages)</td>
+                                <td class="T2">
+                                    Up to annual maximum limit<br />
+                                    (Caesarean deliveries, legal abortion, miscarriage, haemorrhages…)
+                                </td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Treatment of premature babies</td>
+                                <td class="T2">Up to annual maximum limit</td>
+                            </tr>
+                        </table>
+
+                        <label for="textAreaToggle2" id="MoreLess"> > </label>
+                    </div>
+                </li>
+
+
+                <li>
+                    <input type="radio" name="tabs" id="tab3">
+                    <label for="tab3" role="tab" aria-selected="false" aria-controls="panel3" tabindex="0" class="title_content">Bronze</label>
+                    <div id="tab-content3" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+                        <table class="table_content">
+                            <tr class="color3">
+                                <td class="T1">
+                                    <a href="#">Provider Network List</a>
+                                </td>
+                                <td class="T2">
+
+                                    <div class="dropdown" style="float:right;">
+                                        <button class="dropbtn">Compare Schemes</button>
+                                        <div class="dropdown-content">
+                                            <p>Select up to 2 more schemes to compare:</p>
+
+                                            <div><input type="checkbox" name="color" value="Silver"> Gold</div>
+                                            <div><input type="checkbox" name="color" value="Bronze"> Silver</div>
+                                            <div style="padding-bottom:3%"><input type="checkbox" name="color" value="Blue"> Blue</div>
+
+                                            <a href="#">Compare</a>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="color1">
+                                <td class="T1">Overall annual<br /> maximum limit per<br /> member</td>
+                                <td class="T2">Starts from SAR 500,000</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Accommodation</td>
+                                <td class="T2">Shared room</td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Outpatient deductible</td>
+                                <td class="T2">
+                                    "0-20% deductible rate up to SR 75 at the minimum providers network (MPN) 0-20% deductible rate up to SR 100 at polyclinics in<br />
+                                    -network not within (MPN) 0-20% deductible rate up to SR 300 at hospitals in-network not within (MPN)"
+                                </td>
+                            </tr>
+
+                            <tr class="color1">
+                                <td class="T1">Emergency treatment<br /> outside the kingdom</td>
+                                <td class="T2">
+                                    Covered 100% of the actual cost on the first 50,000 Saudi Riyal. Any cost over this amount is paid based on the reasonable and<br />
+                                    customary cost of the same medical service in a network provider in KSA
+                                </td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Maternity Cover with<br /> benefits</td>
+                                <td class="T2">
+                                    Starting from SAR 15,000<br />
+                                    (normal deliveries , antenatal and postnatal cares)
+                                </td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Dental coverage</td>
+                                <td class="T2">Starting from 2,000 SAR that includes a dental scaling once a year</td>
+                            </tr>
+
+
+                            <tr class="color1">
+                                <td class="T1">Optical coverage</td>
+                                <td class="T2">Starting from SAR 400</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Inpatient / day-case<br /> coverage</td>
+                                <td class="T2">Covered</td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Companion charges</td>
+                                <td class="T2">Fully paid</td>
+                            </tr>
+
+
+                        </table>
+
+
+
+                        <input id="textAreaToggle3" type="checkbox" />
+
+                        <table class="table_content" id="textarea3">
+                            <tr class="color1">
+                                <td class="T1">Outpatient coverage</td>
+                                <td class="T2">Covered</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Maternity complications (Caesarean deliveries, legal<br /> abortion, miscarriage, haemorrhages)</td>
+                                <td class="T2">
+                                    Up to annual maximum limit<br />
+                                    (Caesarean deliveries, legal abortion, miscarriage, haemorrhages…)
+                                </td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Treatment of premature babies</td>
+                                <td class="T2">Up to annual maximum limit</td>
+                            </tr>
+                        </table>
+
+                        <label for="textAreaToggle3" id="MoreLess"> > </label>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="radio" name="tabs" id="tab4">
+                    <label for="tab4" role="tab" aria-selected="false" aria-controls="panel4" tabindex="0" class="title_content">Blue</label>
+                    <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+                        <table class="table_content">
+                            <tr class="color3">
+                                <td class="T1">
+                                    <a href="#">Provider Network List</a>
+                                </td>
+                                <td class="T2">
+
+                                    <div class="dropdown" style="float:right;">
+                                        <button class="dropbtn">Compare Schemes</button>
+                                        <div class="dropdown-content">
+                                            <p>Select up to 2 more schemes to compare:</p>
+
+                                            <div><input type="checkbox" name="color" value="Silver"> Gold</div>
+                                            <div><input type="checkbox" name="color" value="Bronze"> Silver</div>
+                                            <div style="padding-bottom:3%"><input type="checkbox" name="color" value="Blue"> Bronze</div>
+
+                                            <a href="#">Compare</a>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="color1">
+                                <td class="T1">Overall annual<br /> maximum limit per<br /> member</td>
+                                <td class="T2">Starts from SAR 500,000</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Accommodation</td>
+                                <td class="T2">Shared room</td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Outpatient deductible</td>
+                                <td class="T2">
+                                    "0-20% deductible rate up to SR 75 at the minimum providers network (MPN) 0-20% deductible rate up to SR 100 at polyclinics in<br />
+                                    -network not within (MPN) 0-20% deductible rate up to SR 300 at hospitals in-network not within (MPN)"
+                                </td>
+                            </tr>
+
+                            <tr class="color1">
+                                <td class="T1">Emergency treatment<br /> outside the kingdom</td>
+                                <td class="T2">
+                                    Not covered
+                                </td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Maternity Cover with<br /> benefits</td>
+                                <td class="T2">
+                                    Starting from SAR 15,000<br />
+                                    (normal deliveries , antenatal and postnatal cares)
+                                </td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Dental coverage</td>
+                                <td class="T2">Starting from 2,000 SAR that includes a dental scaling once a year</td>
+                            </tr>
+
+
+                            <tr class="color1">
+                                <td class="T1">Optical coverage</td>
+                                <td class="T2">SAR 400</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Inpatient / day-case<br /> coverage</td>
+                                <td class="T2">Covered</td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Companion charges</td>
+                                <td class="T2">Fully paid</td>
+                            </tr>
+
+
+                        </table>
+
+
+
+                        <input id="textAreaToggle4" type="checkbox" />
+
+                        <table class="table_content" id="textarea4">
+                            <tr class="color1">
+                                <td class="T1">Outpatient coverage</td>
+                                <td class="T2">Covered</td>
+                            </tr>
+                            <tr class="color2">
+                                <td class="T1">Maternity complications (Caesarean deliveries, legal<br /> abortion, miscarriage, haemorrhages)</td>
+                                <td class="T2">
+                                    Up to annual maximum limit<br />
+                                    (Caesarean deliveries, legal abortion, miscarriage, haemorrhages…)
+                                </td>
+                            </tr>
+                            <tr class="color3">
+                                <td class="T1">Treatment of premature babies</td>
+                                <td class="T2">Up to annual maximum limit</td>
+                            </tr>
+                        </table>
+
+                        <label for="textAreaToggle4" id="MoreLess"> > </label>
+                    </div>
+                </li>
+
+            </ul>
+
+
+        </div>
+    </center>
+
+
+</body>
+</html>
